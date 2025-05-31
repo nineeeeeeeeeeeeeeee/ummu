@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Cinta 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      z-index: 1;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #e91e63;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
+      border-radius: 10px;
+      border: 2px solid #e91e63;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #e91e63;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #c2185b;
+      transform: scale(1.05);
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #4a148c;
+      display: none;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: floatHearts 5s infinite ease-in;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatHearts {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://files.catbox.moe/47jmpj.mp3" type="audio/mpeg" />
+  </audio>
+
+  <div class="hearts" id="hearts"></div>
+
+  <div class="container">
+    <h1>Login Cinta 💖</h1>
+    <p>Tulis namamu untuk melihat pesan spesial 🥰</p>
+    <input type="text" id="nama" placeholder="Nama kamu...">
+    <button onclick="tampilkanPesan()">Masuk 💌</button>
+    <div class="message" id="pesan"></div>
+  </div>
+
+  <script>
+    function tampilkanPesan() {
+      const nama = document.getElementById("nama").value.trim();
+      const pesan = document.getElementById("pesan");
+      if (nama === "") {
+        pesan.style.display = "block";
+        pesan.innerText = "Isi dulu namanya ya, sayang~ 💕";
+        return;
+      }
+      pesan.style.display = "block";
+      pesan.innerHTML = `Halo ${nama} 🌹<br>Setahun udah kita lewatin bareng.<br>Kamu adalah alasan aku tersenyum tiap hari.<br><strong>I love you more and more every day 💖</strong><br><br><button onclick='alert("Peluk virtual dikirim 🤗")'>Peluk Balik 🤗</button> <button onclick='alert("Cium virtual mwuah 😘")'>Cium Virtual 😘</button>`;
+    }
+
+    function buatHati() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+      document.getElementById("hearts").appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(buatHati, 300);
+  </script>
+</body>
+</html>
