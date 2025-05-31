@@ -142,13 +142,18 @@
     function tampilkanPesan() {
       const nama = document.getElementById("nama").value.trim();
       const pesan = document.getElementById("pesan");
-      if (nama === "") {
-        pesan.style.display = "block";
-        pesan.innerText = "Isi dulu namanya ya, sayang~ 💕";
-        return;
-      }
+      const namaValid = ["ummu maizeva", "ummu", "eva"];
+      const namaLower = nama.toLowerCase();
+
       pesan.style.display = "block";
-      pesan.innerHTML = `Halo ${nama} 🌹<br>Setahun udah kita lewatin bareng.<br>Kamu adalah alasan aku tersenyum tiap hari.<br><strong>I love you more and more every day 💖</strong><br><br><button onclick='alert("Peluk virtual dikirim 🤗")'>Peluk Balik 🤗</button> <button onclick='alert("Cium virtual mwuah 😘")'>Cium Virtual 😘</button>`;
+
+      if (nama === "") {
+        pesan.innerText = "Isi dulu namanya ya, sayang~ 💕";
+      } else if (namaValid.includes(namaLower)) {
+        pesan.innerHTML = `Halo ${nama} 🌹<br>Setahun udah kita lewatin bareng.<br>Kamu adalah alasan aku tersenyum tiap hari.<br><strong>I love you more and more every day 💖</strong><br><br><button onclick='alert("Peluk virtual dikirim 🤗")'>Peluk Balik 🤗</button> <button onclick='alert("Cium virtual mwuah 😘")'>Cium Virtual 😘</button>`;
+      } else {
+        pesan.innerHTML = `Yah maaf ya, kamu bukan target cinta spesial hari ini 😜<br><strong>Coba lain kali, mungkin kamu jodoh orang lain 😆</strong>`;
+      }
     }
 
     function buatHati() {
